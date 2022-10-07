@@ -1,17 +1,19 @@
-from rest_framework import generics,mixins
+from rest_framework import generics,mixins,permissions
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from api.mixins import StaffEditorPermissionMixin
 
-from django.shortcuts import get_list_or_404, get_object_or_404
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 
 from .models import Product
 from .serializers import ProductSerializers
 
-class ProductListCreateApiView(generics.ListCreateAPIView):
+class ProductListCreateApiView(StaffEditorPermissionMixin,generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializers
+    
 
     def perform_create(self, serializer):
         # serializer.save(user = self.request.user)
@@ -23,18 +25,20 @@ class ProductListCreateApiView(generics.ListCreateAPIView):
         serializer.save(content=content)
 product_list_create_view = ProductListCreateApiView.as_view()
 
-class PoductDetailApiView(generics.RetrieveAPIView):
+class PoductDetailApiView(StaffEditorPermissionMixin,generics.RetrieveAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializers
+    
     # lookup_field = 'pk'
 
     # Product.objects.get(pk)
 product_detail_view = PoductDetailApiView.as_view()
 
-class PoductUpdateApiView(generics.UpdateAPIView):
+class PoductUpdateApiView(StaffEditorPermissionMixin,generics.UpdateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializers
     lookup_field = 'pk'
+    permission_classes = [permissions.DjangoModelPermissions]
 
     def perform_update(self, serializer):
         instance = serializer.save()
@@ -45,10 +49,11 @@ class PoductUpdateApiView(generics.UpdateAPIView):
     # Product.objects.get(pk)
 product_update_view = PoductUpdateApiView.as_view()
 
-class PoductDestroyAPIView(generics.DestroyAPIView):
+class PoductDestroyAPIView(StaffEditorPermissionMixin,generics.DestroyAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializers
     lookup_field = 'pk'
+    
 
     def perform_delete(self, instance):
         super().destroy(instance)
@@ -79,13 +84,14 @@ def product_alt_view(request,pk=None,*args,**kwargs):
             return Response(serializer.data)
         return Response({"This field is required"})
         
-class ProductMixinView(mixins.ListModelMixin,
+class ProductMixinView(StaffEditorPermissionMixin,mixins.ListModelMixin,
 mixins.CreateModelMixin,
 mixins.RetrieveModelMixin,
 generics.GenericAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializers
     lookup_field = 'pk'
+    
 
     def get(self,request,*args,**kwargs):
         pk = kwargs.get("pk")
