@@ -138,5 +138,7 @@ REST_FRAMEWORK = {
     ],
     "DEFAULT_PERMISSION_CLASSES":[
         "api.permissions.IsStaffEditorPermission"
-    ]
+    ],
+    "DEFAULT_PAGINATION_CLASS":"rest_framework.pagination.LimitOffsetPagination",
+    "PAGE_SIZE": 10,
 }
