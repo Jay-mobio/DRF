@@ -6,7 +6,6 @@ username = input("What is your username?\n")
 password = getpass("What is your password?\n")
 
 auth_response = requests.post(auth_endpoint,json={'username':username,'password':password})
-print(auth_response.json())
 
 if auth_response.status_code == 200:
     token = auth_response.json()['token']
