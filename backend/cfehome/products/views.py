@@ -11,7 +11,7 @@ from .models import Product
 from .serializers import ProductSerializers
 
 class ProductListCreateApiView(StaffEditorPermissionMixin,UserQuerySetMixin,generics.ListCreateAPIView):
-    queryset = Product.objects.all()
+    queryset = Product.object.all()
     serializer_class = ProductSerializers
     
 
@@ -35,7 +35,7 @@ class ProductListCreateApiView(StaffEditorPermissionMixin,UserQuerySetMixin,gene
 product_list_create_view = ProductListCreateApiView.as_view()
 
 class PoductDetailApiView(StaffEditorPermissionMixin,generics.RetrieveAPIView):
-    queryset = Product.objects.all()
+    queryset = Product.object.all()
     serializer_class = ProductSerializers
     
     # lookup_field = 'pk'
@@ -44,7 +44,7 @@ class PoductDetailApiView(StaffEditorPermissionMixin,generics.RetrieveAPIView):
 product_detail_view = PoductDetailApiView.as_view()
 
 class PoductUpdateApiView(StaffEditorPermissionMixin,generics.UpdateAPIView):
-    queryset = Product.objects.all()
+    queryset = Product.object.all()
     serializer_class = ProductSerializers
     lookup_field = 'pk'
     permission_classes = [permissions.DjangoModelPermissions]
@@ -59,7 +59,7 @@ class PoductUpdateApiView(StaffEditorPermissionMixin,generics.UpdateAPIView):
 product_update_view = PoductUpdateApiView.as_view()
 
 class PoductDestroyAPIView(StaffEditorPermissionMixin,generics.DestroyAPIView):
-    queryset = Product.objects.all()
+    queryset = Product.object.all()
     serializer_class = ProductSerializers
     lookup_field = 'pk'
     
@@ -97,7 +97,7 @@ class ProductMixinView(StaffEditorPermissionMixin,mixins.ListModelMixin,
 mixins.CreateModelMixin,
 mixins.RetrieveModelMixin,
 generics.GenericAPIView):
-    queryset = Product.objects.all()
+    queryset = Product.object.all()
     serializer_class = ProductSerializers
     lookup_field = 'pk'
     

@@ -1,3 +1,4 @@
+algoliasearch-django
 django
 djangorestframework
 pyyaml

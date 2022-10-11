@@ -37,11 +37,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #third party api services
+    'algoliasearch_django',
+
+    #third party packages
     'rest_framework',
     'rest_framework.authtoken',
+    'rest_framework_simplejwt',
+
+    #internal apps
     'api',
     'products',
-    'rest_framework_simplejwt',
+    'search',
 ]
 
 MIDDLEWARE = [
@@ -141,4 +148,10 @@ REST_FRAMEWORK = {
     ],
     "DEFAULT_PAGINATION_CLASS":"rest_framework.pagination.LimitOffsetPagination",
     "PAGE_SIZE": 10,
+}
+
+ALGOLIA = {
+    'APPLICATION_ID': 'J5MIMHOSFY',
+    'API_KEY': '518c2e194f2cb29e935b504da4112b03',
+    'INDEX_PREFIX':'cfe_product',
 }

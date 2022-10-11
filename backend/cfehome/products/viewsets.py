@@ -3,14 +3,14 @@ from .models import Product
 from .serializers import ProductSerializers
 
 class ProductViewSets(viewsets.ModelViewSet):
-    queryset = Product.objects.all()
+    queryset = Product.object.all()
     serializer_class = ProductSerializers
     lookup_field = 'pk'
 
 class ProductGenericViewSets(viewsets.GenericViewSet,
         mixins.ListModelMixin,
         mixins.RetrieveModelMixin):
-    queryset = Product.objects.all()
+    queryset = Product.object.all()
     serializer_class = ProductSerializers
     lookup_field = 'pk'
 
