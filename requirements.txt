@@ -1,6 +1,7 @@
 algoliasearch-django
 django
 djangorestframework
+djangorestframework_simplejwt
 pyyaml
 requests
 django-cors-headers
