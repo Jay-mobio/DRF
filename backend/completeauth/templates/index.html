@@ -1,0 +1,18 @@
+{% load i18n %}
+{% load socialaccount %}
+{% load account %}
+
+{% get_providers as socialaccount_providers %}
+
+
+<head>
+    <title>Social Login</title>
+
+</head>
+
+<body>
+
+    <button><a href="{% provider_login_url "google" %}">Google Login</a></button>
+</body>
+
+</html>

@@ -5,3 +5,6 @@ djangorestframework_simplejwt
 pyyaml
 requests
 django-cors-headers
+social-auth-core
+social-auth-app-django
+drf-social-auth
