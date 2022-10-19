@@ -19,3 +19,30 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.email
+class Department(models.Model):
+    name = models.CharField(max_length = 50)
+
+    def __str__(self):
+        return self.name
+
+class Employee(models.Model):
+    name = models.CharField(max_length=50)
+    age = models.IntegerField()
+    department = models.ForeignKey(Department, on_delete = models.CASCADE)
+
+    def __str__(self):
+        return self.name
+
+class Books(models.Model):
+    name = models.CharField(max_length = 250)
+    price = models.IntegerField()
+
+    def __str__(self):
+        return self.name
+
+class Store(models.Model):
+    name = models.CharField(max_length = 250)
+    visitors = models.ManyToManyField(Employee)
+
+    def __str__(self):
+        return self.name

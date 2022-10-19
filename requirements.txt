@@ -1,10 +1,6 @@
-algoliasearch-django
-django
-djangorestframework
-djangorestframework_simplejwt
-pyyaml
-requests
-django-cors-headers
-social-auth-core
-social-auth-app-django
-drf-social-auth
+algoliasearch_django==2.0.0
+Django==4.1.2
+djangorestframework==3.14.0
+djangorestframework_simplejwt==5.2.1
+requests==2.28.1
+social_auth_app_django==5.0.0

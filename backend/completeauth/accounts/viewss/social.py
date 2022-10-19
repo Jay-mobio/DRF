@@ -14,7 +14,7 @@ from social_django.utils import psa
 def register_by_access_token(request, backend):
     token = request.data.get('access_token')
     user = request.backend.do_auth(token)
-    print(request)
+    print(request)  
     if user:
         token, _ = Token.objects.get_or_create(user=user)
         return Response(

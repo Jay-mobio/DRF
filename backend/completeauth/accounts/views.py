@@ -2,6 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from accounts.emails import send_otp_via_email
+from .models import Employee,Department,Store
 
 from .serializer import *
 # Create your views here.
@@ -26,7 +27,6 @@ class RegisterAPI(APIView):
             })
         
         except Exception as e:
-            print(e,'------------------------------')
             return Response('Some thing went wrong')
 
 class VarifyOtp(APIView):
@@ -81,3 +81,12 @@ class Home(APIView):
     
     def get(self,request):
         return render(request,self.template_name)
+
+def dashboard(requets):
+    #Fetching all the employes
+    # employees = Employee.objects.all()
+    employees = Employee.objects.all().select_related('department')
+    # employees = Employee.objects.all().prefetch_related('store_set')
+    for i in employees:
+        print(i.name,i.department.name)
+        # print(i.store_set.all())

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'accounts',
     'rest_framework',
+    'debug_toolbar',
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
@@ -76,6 +77,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = 'completeauth.urls'
@@ -174,3 +176,9 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'jaygames740555@gmail.com'
 EMAIL_HOST_PASSWORD = 'eauohxajxhszqtty'
+
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    # ...
+]
